@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/read_note_cubit/read_note_cubit.dart';
 
 import '../widgets/bottom_sheets/add_note_bottom_sheet.dart';
 import '../widgets/notes_view_body.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
+
   static const String routeName = "notesView";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

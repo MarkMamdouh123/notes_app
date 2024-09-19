@@ -1,15 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/read_note_cubit/read_note_cubit.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
-import 'package:notes_app/widgets/notes_item.dart';
 
 import 'note_list_view.dart';
 
-class NotesViewBody extends StatelessWidget {
-  var noteItem = List.generate(
-    10,
-    (index) => NotesItem(),
-  );
+class NotesViewBody extends StatefulWidget {
+  @override
+  State<NotesViewBody> createState() => _NotesViewBodyState();
+}
+
+class _NotesViewBodyState extends State<NotesViewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<ReadNoteCubit>(context).fetchAllNotes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,10 +23,11 @@ class NotesViewBody extends StatelessWidget {
       child: Column(
         children: [
           CustomAppBar(
+            onPressed: () {},
             text: "Notes",
             icon: Icons.search,
           ),
-          NoteListView(noteItem: noteItem),
+          NoteListView(),
         ],
       ),
     );
